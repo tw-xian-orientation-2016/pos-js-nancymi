@@ -4,15 +4,15 @@ function printReceipt(items) {
   var itemInfoList = getItemInfoList(cartItemList);
   var itemPriceList = caculatePrice(itemInfoList);
   var priceInfo = caculateTotalPrice(itemPriceList);
-  var infoStr = generateShoppingInfoStr(priceInfo);
+  var shoppingInfoStr = generateShoppingInfoStr(priceInfo);
 
-  //return infoStr;
+  console.log(shoppingInfoStr);
 }
 
 function getCartItemList(items) {
-  var cartList = new Array();
+  var cartItemList = new Array();
   for (var i = 0; i < items.length; i ++) {
-    cartItem = extractMsg(items[i]);
+    var cartItem = extractMsg(items[i]);
     addItemToList(cartItem, cartItemList);
   }
   return cartItemList;
@@ -27,7 +27,7 @@ function extractMsg(itemStr) {
   var itemStrObj = new String(itemStr);
   var barcode = itemStrObj.substring(0, 10);
   if (itemStrObj.length > 10) {
-    count = itemStrObj.substring(11, itemStr.length);
+    count = parseInt(itemStrObj.substring(11, itemStr.length));
   }
   var cartItem = new cartitem(barcode, count);
   return cartItem;

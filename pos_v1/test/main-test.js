@@ -83,7 +83,7 @@ describe('pos', function() {
     expect(priceInfo).toEqual(expectPriceInfo);
   });
 
-  it('shoule output correct shoppingListStr', function() {
+  it('should output correct shoppingListStr', function() {
     expectShoppingInfoStr = generateShoppingInfoStr(priceInfo);
     expect(shoppingInfoStr).toEqual(expectShoppingInfoStr);
   });
