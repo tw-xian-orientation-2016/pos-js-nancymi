@@ -93,13 +93,35 @@ function caculateItemPromPrice(itemInfo) {
 }
 
 function promByTwoGetOneFree(itemInfo) {
-  var itemPromPrice = new Number(itemInfo.item.price * (itemInfo.count - parseInt(itemInfo.count/2)));
+  var itemPromPrice = new Number(itemInfo.item.price * (itemInfo.count - parseInt(itemInfo.count/3)));
   itemPromPrice.toFixed(2);
   return itemPromPrice;
 }
 
 function caculateTotalPrice(itemPriceList) {
+  var totalPrice = caculateTotalNormalPrice(itemPriceList);
+  var totalPromPrice = caculateTotalPromPrice(itemPriceList);
+  var prom = totalPrice - totalPromPrice;
+  var priceInfo = new priceinfo(totalPrice, totalPromPrice, prom, itemPriceList);
+  return priceInfo;
+}
 
+function caculateTotalNormalPrice(itemPriceList) {
+  var totalPrice = new Number();
+  for (var i = 0; i < itemPriceList.length; i ++) {
+    totalPrice += itemPriceList[i].normalPrice;
+  }
+  totalPrice.toFixed(2);
+  return totalPrice;
+}
+
+function caculateTotalPromPrice(itemPriceList) {
+  var totalPromPrice = new Number();
+  for (var i = 0; i < itemPriceList.length; i ++) {
+    totalPromPrice += itemPriceList[i].promPrice;
+  }
+  totalPromPrice.toFixed(2);
+  return totalPromPrice;
 }
 
 function generateShoppingInfoStr(priceInfoList) {

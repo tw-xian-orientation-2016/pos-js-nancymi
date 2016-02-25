@@ -27,11 +27,11 @@ describe('pos', function() {
     itemInfoList.push(new iteminfo(allItems[5], 3));
 
     itemPriceList = new Array();
-    itemPriceList.push(new itemprice(15.00, 9.00, itemInfoList[0]));
+    itemPriceList.push(new itemprice(15.00, 12.00, itemInfoList[0]));
     itemPriceList.push(new itemprice(30.00, 30.00, itemInfoList[1]));
     itemPriceList.push(new itemprice(13.50, 9.00, itemInfoList[2]));
 
-    priceInfo = new priceinfo(58.50, 52.50, itemPriceList);
+    priceInfo = new priceinfo(58.5, 51.00, 7.50, itemPriceList);
 
     shoppingListStr = 
       '***<没钱赚商店>收据***\n' +

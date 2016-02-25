@@ -22,9 +22,10 @@ function itemprice(normalPrice, promPrice, itemInfo) {
   this.promPrice = promPrice;
 }
 
-function priceinfo(totalPrice, totalPromPrice, itemPrices) {
+function priceinfo(totalPrice, totalPromPrice, prom, itemPrices) {
   this.itemPrices = new Array();
   this.itemPrices = itemPrices;
   this.totalPrice = totalPrice;
+  this.prom = prom;
   this.totalPromPrice = totalPromPrice;
 }
