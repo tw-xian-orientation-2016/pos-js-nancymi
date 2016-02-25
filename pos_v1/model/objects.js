@@ -11,7 +11,6 @@ function cartitem(barcode, count) {
 }
 
 function iteminfo(item, count) {
-  this.item = new Object();
   this.item = item;
   this.count = count;
 }

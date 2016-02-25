@@ -41,12 +41,13 @@ function addItemToList(cartItem, cartList) {
 }
 
 function getItemInfoList(cartItemList) {
-  var items = getAllItems();
+  var items = loadAllItems();
   var itemInfoList = new Array();
-  for (item in items) {
-    if (cartList[item.barcode] != null) {
-      var cartItem = new cartitem(item, cartItemList[item.barcode]);
-      itemInfoList.push(cartItem);
+  for (var i = 0; i < items.length; i ++) {
+    var barcode = items[i].barcode;
+    if (cartItemList[barcode] != null) {
+      var itemInfo = new iteminfo(items[i], cartItemList[barcode]);
+      itemInfoList.push(itemInfo);
     }
   }
   return itemInfoList;
