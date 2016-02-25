@@ -33,7 +33,7 @@ describe('pos', function() {
 
     priceInfo = new priceinfo(58.5, 51.00, 7.50, itemPriceList);
 
-    shoppingListStr = 
+    shoppingInfoStr = 
       '***<没钱赚商店>收据***\n' +
       '名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)\n' +
       '名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)\n' +
@@ -84,8 +84,8 @@ describe('pos', function() {
   });
 
   it('shoule output correct shoppingListStr', function() {
-    expectShoppingListStr = generateShoppingListStr(priceInfo);
-    expect(priceInfo).toEqual(expectShoppingListStr);
+    expectShoppingInfoStr = generateShoppingInfoStr(priceInfo);
+    expect(shoppingInfoStr).toEqual(expectShoppingInfoStr);
   });
 
 });

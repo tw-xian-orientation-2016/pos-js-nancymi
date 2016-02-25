@@ -4,7 +4,7 @@ function printReceipt(items) {
   var itemInfoList = getItemInfoList(cartItemList);
   var itemPriceList = caculatePrice(itemInfoList);
   var priceInfo = caculateTotalPrice(itemPriceList);
-  var infoStr = generateShoppingInfoStr(priceInfoList);
+  var infoStr = generateShoppingInfoStr(priceInfo);
 
   //return infoStr;
 }
@@ -124,6 +124,20 @@ function caculateTotalPromPrice(itemPriceList) {
   return totalPromPrice;
 }
 
-function generateShoppingInfoStr(priceInfoList) {
-
+function generateShoppingInfoStr(priceInfo) {
+  var shoppingInfoStr = '***<没钱赚商店>收据***\n';
+  for (var i = 0; i < priceInfo.itemPrices.length; i ++) {
+    var itemInfo = priceInfo.itemPrices[i].itemInfo;
+    var itemPrice = priceInfo.itemPrices[i];
+    shoppingInfoStr += 
+      ('名称：' + itemInfo.item.name + '，数量：' +
+        itemInfo.count + itemInfo.item.unit +
+        '，单价：' + itemInfo.item.price.toFixed(2) + '(元)，小计：' +
+        itemPrice.promPrice.toFixed(2) + '(元)\n');
+  }
+  shoppingInfoStr += ('----------------------\n' + 
+    '总计：'+ priceInfo.totalPromPrice.toFixed(2) + '(元)\n' +
+    '节省：'+ priceInfo.prom.toFixed(2) + '(元)\n' +
+    '**********************');
+  return shoppingInfoStr;
 }
