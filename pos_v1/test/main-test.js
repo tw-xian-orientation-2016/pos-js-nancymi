@@ -22,9 +22,9 @@ describe('pos', function() {
     cartItemList['ITEM000005'] = 3;
 
     itemInfoList = new Array();
-    itemInfoList.push(items[1], 5);
-    itemInfoList.push(items[3], 2);
-    itemInfoList.push(items[5], 3);
+    itemInfoList.push(allItems[1], 5);
+    itemInfoList.push(allItems[3], 2);
+    itemInfoList.push(allItems[5], 3);
 
     itemPriceList = new Array();
     itemPriceList.push(new itemprice(15.00, 9.00, itemInfoList[0]));
