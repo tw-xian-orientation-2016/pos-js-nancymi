@@ -29,7 +29,7 @@ describe('pos', function() {
     itemPriceList = new Array();
     itemPriceList.push(new itemprice(15.00, 9.00, itemInfoList[0]));
     itemPriceList.push(new itemprice(30.00, 30.00, itemInfoList[1]));
-    itemPriceList.push(new itemprice(13.50, 13.50, itemInfoList[2]));
+    itemPriceList.push(new itemprice(13.50, 9.00, itemInfoList[2]));
 
     priceInfo = new priceinfo(58.50, 52.50, itemPriceList);
 

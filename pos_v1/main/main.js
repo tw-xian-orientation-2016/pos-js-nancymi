@@ -53,8 +53,49 @@ function getItemInfoList(cartItemList) {
   return itemInfoList;
 }
 
-function caculatePrice(cartItemList) {
+function caculatePrice(itemInfoList) {
+  var itemPriceList = new Array();
+  for (var i = 0; i < itemInfoList.length; i ++) {
+    var normalPrice = caculateItemNormalPrice(itemInfoList[i]);
+    var promPrice = caculateItemPromPrice(itemInfoList[i]);
+    var itemPrice = new itemprice(normalPrice, promPrice, itemInfoList[i]);
+    itemPriceList.push(itemPrice);
+  }
+  return itemPriceList;
+}
 
+function caculateItemNormalPrice(itemInfo) {
+  var normalPrice = new Number(itemInfo.item.price * itemInfo.count);
+  normalPrice.toFixed(2);
+  return normalPrice;
+}
+
+function caculateItemPromPrice(itemInfo) {
+  var itemPromPrice = caculateItemNormalPrice(itemInfo);
+  var promotions = loadPromotions();
+  for (var i = 0; i < promotions.length; i ++) {
+    switch(promotions[i].type) {
+      case 'BUY_TWO_GET_ONE_FREE': {
+        for (var j = 0; j < promotions[i].barcodes.length; j ++) {
+          if (itemInfo.item.barcode == promotions[i].barcodes[j]) {
+            itemPromPrice = promByTwoGetOneFree(itemInfo);
+          }
+        }
+        break;
+      }
+      case 'OTHER_PROMOTION': {
+        //TODO finish other promotions' algorithm
+      }
+      default: break;
+    }
+  }
+  return itemPromPrice;
+}
+
+function promByTwoGetOneFree(itemInfo) {
+  var itemPromPrice = new Number(itemInfo.item.price * (itemInfo.count - parseInt(itemInfo.count/2)));
+  itemPromPrice.toFixed(2);
+  return itemPromPrice;
 }
 
 function caculateTotalPrice(itemPriceList) {
