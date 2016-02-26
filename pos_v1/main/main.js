@@ -10,7 +10,7 @@ function printReceipt(items) {
 }
 
 function getCartItemList(items) {
-  var cartItemList = new Array();
+  var cartItemList = [];
   for (var i = 0; i < items.length; i ++) {
     var cartItem = extractMsg(items[i]);
     addItemToList(cartItem, cartItemList);
@@ -20,9 +20,8 @@ function getCartItemList(items) {
 
 function extractMsg(itemStr) {
   if (itemStr.length < 10) {
-    throw "illegal item.";
+    throw 'illegal item.';
   }
-  var barcode = "";
   var count = 1;
   var itemStrObj = new String(itemStr);
   var barcode = itemStrObj.substring(0, 10);
@@ -42,7 +41,7 @@ function addItemToList(cartItem, cartList) {
 
 function getItemInfoList(cartItemList) {
   var items = loadAllItems();
-  var itemInfoList = new Array();
+  var itemInfoList = [];
   for (var i = 0; i < items.length; i ++) {
     var barcode = items[i].barcode;
     if (cartItemList[barcode] != null) {
@@ -54,7 +53,7 @@ function getItemInfoList(cartItemList) {
 }
 
 function caculatePrice(itemInfoList) {
-  var itemPriceList = new Array();
+  var itemPriceList = [];
   for (var i = 0; i < itemInfoList.length; i ++) {
     var normalPrice = caculateItemNormalPrice(itemInfoList[i]);
     var promPrice = caculateItemPromPrice(itemInfoList[i]);

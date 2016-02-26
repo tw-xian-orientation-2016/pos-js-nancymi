@@ -33,15 +33,6 @@ describe('pos', function() {
 
     priceInfo = new priceinfo(58.5, 51.00, 7.50, itemPriceList);
 
-    shoppingInfoStr = 
-      '***<没钱赚商店>收据***\n' +
-      '名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)\n' +
-      '名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)\n' +
-      '名称：方便面，数量：3袋，单价：4.50(元)，小计：9.00(元)\n' +
-      '----------------------\n' +
-      '总计：51.00(元)\n' +
-      '节省：7.50(元)\n' +
-      '**********************';
   });
 
   it('should print correct text', function() {
@@ -69,6 +60,7 @@ describe('pos', function() {
   });
 
   it('should output correct itemInfoList', function () {
+
     expectItemInfoList = getItemInfoList(cartItemList);
     expect(itemInfoList).toEqual(expectItemInfoList);
   });
@@ -84,6 +76,17 @@ describe('pos', function() {
   });
 
   it('should output correct shoppingListStr', function() {
+
+    var shoppingInfoStr = 
+      '***<没钱赚商店>收据***\n' +
+      '名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)\n' +
+      '名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)\n' +
+      '名称：方便面，数量：3袋，单价：4.50(元)，小计：9.00(元)\n' +
+      '----------------------\n' +
+      '总计：51.00(元)\n' +
+      '节省：7.50(元)\n' +
+      '**********************';
+
     expectShoppingInfoStr = generateShoppingInfoStr(priceInfo);
     expect(shoppingInfoStr).toEqual(expectShoppingInfoStr);
   });
