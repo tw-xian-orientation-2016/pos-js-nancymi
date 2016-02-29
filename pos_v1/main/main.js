@@ -1,10 +1,10 @@
 const BARCODE_LENGTH = 10;
 
-function printReceipt(items) {
-  var cartItemList = getCartItemList(items);
+function printReceipt(tags) {
+  var cartItemList = getCartItemList(tags);
   var itemInfoList = getItemInfoList(cartItemList);
   var itemPriceList = caculatePrice(itemInfoList);
-  var priceInfo = caculateTotalPrice(itemPriceList);
+  var priceInfo = calculateTotalPrice(itemPriceList);
   var shoppingInfoStr = generateShoppingInfoStr(priceInfo);
 
   console.log(shoppingInfoStr);
@@ -53,7 +53,7 @@ function caculatePrice(itemInfoList) {
   var itemPriceList = [];
   itemInfoList.forEach(function(itemInfo) {
     var normalPrice = caculateItemNormalPrice(itemInfo);
-    var promPrice = caculateItemPromPrice(itemInfo);
+    var promPrice = calculateItemPromPrice(itemInfo);
     var itemPrice = new itemprice(normalPrice, promPrice, itemInfo);
     itemPriceList.push(itemPrice);
   });
@@ -67,7 +67,7 @@ function caculateItemNormalPrice(itemInfo) {
   return normalPrice;
 }
 
-function caculateItemPromPrice(itemInfo) {
+function calculateItemPromPrice(itemInfo) {
   var itemPromPrice = caculateItemNormalPrice(itemInfo);
   var promotions = loadPromotions();
   promotions.forEach(function(promotion) {
@@ -75,7 +75,7 @@ function caculateItemPromPrice(itemInfo) {
       case 'BUY_TWO_GET_ONE_FREE': {
         promotion.barcodes.forEach(function(barcode) {
           if (itemInfo.item.barcode === barcode) {
-            itemPromPrice = promBuyTwoGetOneFree(itemInfo);
+            itemPromPrice = promoBuyTwoGetOneFree(itemInfo);
           }
         });
         break;
@@ -90,14 +90,14 @@ function caculateItemPromPrice(itemInfo) {
   return itemPromPrice;
 }
 
-function promBuyTwoGetOneFree(itemInfo) {
+function promoBuyTwoGetOneFree(itemInfo) {
   var promPrice = itemInfo.item.price;
   var promCount = itemInfo.count - parseInt(itemInfo.count/3);
   var itemPromPrice = promPrice * promCount;
   return itemPromPrice;
 }
 
-function caculateTotalPrice(itemPriceList) {
+function calculateTotalPrice(itemPriceList) {
   var totalNormalPrice = 0, totalPromPrice = 0;
   itemPriceList.forEach(function(itemPrice) {
     totalNormalPrice += itemPrice.normalPrice;
